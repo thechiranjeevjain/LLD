@@ -136,6 +136,25 @@ A market order matches the best available opposite prices until either the incom
 
 The trade price is the resting order price. This is common matching-engine behavior because the resting order supplied liquidity at that price.
 
+## Design Patterns
+
+| Pattern | Where | Why it matters in interview discussion |
+| --- | --- | --- |
+| Facade | `MatchingEngine` | Exposes a symbol-aware API and hides per-symbol book creation. |
+| Aggregate / Domain Model | `OrderBook` | Owns the mutable matching state for one symbol. |
+| Value Object / DTO | `OrderRequest`, `Trade`, `ExecutionReport`, `OrderBookSnapshot`, `PriceLevel` | Keeps commands, events, responses, and read models explicit. |
+| State Machine | `OrderStatus`, `Order.fill`, `Order.cancel` | Makes order lifecycle transitions explicit. |
+| Ordered Data Structure Pattern | `TreeMap<Long, Deque<Order>>` | Encodes price priority with FIFO time priority at each price level. |
+
+## Key Invariants
+
+- Each symbol has exactly one `OrderBook` inside `MatchingEngine`.
+- Resting bids are sorted high-to-low; resting asks are sorted low-to-high.
+- FIFO order is preserved within the same price level.
+- `activeOrders` contains only open resting orders.
+- Market orders never rest.
+- Filled or cancelled orders are removed from the active-order index.
+
 ## Extension Points
 
 - Add stop orders by introducing a trigger-order store before the active book.
@@ -143,6 +162,13 @@ The trade price is the resting order price. This is common matching-engine behav
 - Add market data by publishing snapshots and trade events from `OrderBook.place`.
 - Add persistence by appending accepted commands and generated trades to a journal.
 - Add risk checks in `MatchingEngine.place` before routing to `OrderBook`.
+
+## Interview Talking Points
+
+- Matching is synchronized per book, so different symbols can progress independently through separate `OrderBook` instances.
+- Cancellation is fast to locate through `activeOrders`, but removal from the price-level queue is linear.
+- A production matching engine usually persists a command journal so the book can be replayed after restart.
+- Integer price and quantity avoid floating-point rounding problems.
 
 ## Limitations
 

@@ -2,6 +2,8 @@
 
 Java 17 low-level design project for an in-memory exchange order book.
 
+For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, matching flow, design patterns, invariants, and production tradeoffs.
+
 The project models a single-process matching engine with one `OrderBook` per symbol. It supports:
 
 - Limit buy/sell orders
