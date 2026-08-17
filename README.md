@@ -2,6 +2,10 @@
 
 Low-level design interview practice projects in Java. Each project is runnable and has interview notes covering requirements, class diagrams, core flows, design patterns, consistency, extension points, and talking points.
 
+## Study Chapters
+
+- [Design Patterns for Low-Level Design Interviews](docs/DESIGN_PATTERNS_INTERVIEW_CHAPTER.md) — all 23 GoF patterns plus practical Java LLD patterns, comparisons, selection heuristics, coding guidance, and a 45-minute interview workflow.
+
 ## Project Index
 
 | Project | Interview problem | Main concepts | LLD notes |
