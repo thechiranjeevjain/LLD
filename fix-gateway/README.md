@@ -1,5 +1,7 @@
 # FIX Gateway LLD
 
+> **Scope note — integrated reference:** This older project intentionally combines basic FIX parsing/session sequencing, small risk rules, and order routing. It is useful for studying their integration, but it is not the canonical focused answer for [Pre-Trade Risk](../pre-trade-risk-engine/README.md), [FIX Session Manager](../fix-session-manager/README.md), or [Exchange Gateway](../exchange-gateway/README.md). Use the [trading-project relationship guide](../docs/TRADING_PROJECT_RELATIONSHIP_GUIDE.md) to choose the correct interview scope.
+
 A runnable Java 17 project that models a simplified FIX order gateway. It covers the core responsibilities expected in a low-level design interview:
 
 - FIX message parsing and serialization with body length and checksum validation.

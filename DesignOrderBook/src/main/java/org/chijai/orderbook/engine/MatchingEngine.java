@@ -21,6 +21,16 @@ public final class MatchingEngine {
         return bookFor(symbol).cancel(orderId);
     }
 
+    public ExecutionReport replace(
+            String symbol,
+            String orderId,
+            String replacementOrderId,
+            long newPrice,
+            long newQuantity
+    ) {
+        return bookFor(symbol).replace(orderId, replacementOrderId, newPrice, newQuantity);
+    }
+
     public OrderBookSnapshot snapshot(String symbol, int depth) {
         return bookFor(symbol).snapshot(depth);
     }

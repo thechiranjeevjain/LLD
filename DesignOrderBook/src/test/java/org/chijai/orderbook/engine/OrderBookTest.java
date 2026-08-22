@@ -149,4 +149,30 @@ class OrderBookTest {
         assertEquals(OrderStatus.REJECTED, duplicate.status());
         assertEquals("Duplicate order id", duplicate.message());
     }
+
+    @Test
+    void replaceCancelsOldOrderAndLosesFifoPriority() {
+        OrderBook book = new OrderBook("AAPL");
+        book.place(OrderRequest.limit("B-1", "AAPL", Side.BUY, 100_00, 5));
+        book.place(OrderRequest.limit("B-2", "AAPL", Side.BUY, 100_00, 5));
+
+        ExecutionReport replaced = book.replace("B-1", "B-3", 100_00, 4);
+        ExecutionReport sell = book.place(OrderRequest.market("S-1", "AAPL", Side.SELL, 6));
+
+        assertEquals(OrderStatus.ACCEPTED, replaced.status());
+        assertEquals("B-2", sell.trades().get(0).makerOrderId());
+        assertEquals("B-3", sell.trades().get(1).makerOrderId());
+        assertEquals(OrderStatus.REJECTED, book.cancel("B-1").status());
+    }
+
+    @Test
+    void invalidReplaceKeepsOriginalOrderActive() {
+        OrderBook book = new OrderBook("AAPL");
+        book.place(OrderRequest.limit("B-1", "AAPL", Side.BUY, 100_00, 5));
+
+        ExecutionReport rejected = book.replace("B-1", "B-2", 0, 5);
+
+        assertEquals(OrderStatus.REJECTED, rejected.status());
+        assertEquals(OrderStatus.CANCELLED, book.cancel("B-1").status());
+    }
 }

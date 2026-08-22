@@ -1,5 +1,7 @@
 # Design Order Book
 
+> **Canonical scope:** Use this project for **Order Book (LLD #19)**. Its matching code exists to exercise book behavior; for a focused **Matching Engine (LLD #20)** answer, use [matching-engine](../matching-engine/README.md). See the [trading-project relationship guide](../docs/TRADING_PROJECT_RELATIONSHIP_GUIDE.md) for the interview and production-shaped boundaries.
+
 Java 17 low-level design project for an in-memory exchange order book.
 
 For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, matching flow, design patterns, invariants, and production tradeoffs.
@@ -12,6 +14,7 @@ The project models a single-process matching engine with one `OrderBook` per sym
 - Price-time priority
 - Partial fills
 - Order cancellation
+- Atomic cancel-replace with a new order ID and lost time priority
 - Top-of-book and depth snapshots
 - Execution reports and trades
 
@@ -39,6 +42,7 @@ mvn exec:java
 5. IOC orders expire any unfilled quantity.
 6. GTC limit orders rest any unfilled quantity.
 7. Order IDs are accepted once and cannot be reused.
+8. Replace validates first, then atomically cancels the old order and adds a new order at the back of its price level.
 
 ## Complexity
 

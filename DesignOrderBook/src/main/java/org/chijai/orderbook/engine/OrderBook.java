@@ -83,6 +83,37 @@ public final class OrderBook {
         return ExecutionReport.from(order, List.of(), "Cancelled");
     }
 
+    /**
+     * Cancel-replace semantics: the replacement receives a new order id and loses time priority.
+     * The requested quantity is the replacement's new open quantity, not the old order's total quantity.
+     */
+    public synchronized ExecutionReport replace(String orderId, String replacementOrderId, long newPrice, long newQuantity) {
+        Objects.requireNonNull(orderId, "orderId is required");
+        Objects.requireNonNull(replacementOrderId, "replacementOrderId is required");
+        Order current = activeOrders.get(orderId);
+        if (current == null) {
+            return ExecutionReport.rejected(replacementOrderId, symbol, "Order is not active");
+        }
+        if (knownOrderIds.contains(replacementOrderId)) {
+            return ExecutionReport.rejected(replacementOrderId, symbol, "Duplicate replacement order id");
+        }
+        if (newPrice <= 0 || newQuantity <= 0) {
+            return ExecutionReport.rejected(replacementOrderId, symbol, "Replacement price and quantity must be positive");
+        }
+
+        activeOrders.remove(orderId);
+        removeRestingOrder(current);
+        current.cancel();
+        return place(OrderRequest.limit(
+                replacementOrderId,
+                symbol,
+                current.side(),
+                newPrice,
+                newQuantity,
+                TimeInForce.GTC
+        ));
+    }
+
     public synchronized OrderBookSnapshot snapshot() {
         return snapshot(Integer.MAX_VALUE);
     }

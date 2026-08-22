@@ -1,5 +1,14 @@
 # Low-Level Design: Order Book
 
+## 40–60 Minute Interview Route
+
+- 0–8 min: clarify single/multi-symbol scope, supported commands, price/quantity units, and time-in-force.
+- 8–20 min: draw the classes and identify `OrderBook` as the per-symbol aggregate.
+- 20–35 min: choose two ordered maps plus FIFO queues and walk add/match/cancel/replace.
+- 35–45 min: code `place`, `match`, and top-of-book; add cancel/replace if time permits.
+- 45–55 min: state invariants, complexity, synchronization boundary, and deterministic ordering.
+- 55–60 min: name tests and production extensions such as journaling, replay, self-trade prevention, and O(1) cancel handles.
+
 ## Requirements
 
 Functional requirements:
@@ -10,6 +19,7 @@ Functional requirements:
 - Preserve FIFO priority among orders at the same price.
 - Support full fills and partial fills.
 - Cancel active resting orders.
+- Replace active orders using cancel-replace semantics.
 - Provide market-depth snapshots.
 
 Non-functional requirements:
@@ -36,6 +46,7 @@ classDiagram
         -Set knownOrderIds
         +place(OrderRequest) ExecutionReport
         +cancel(String) ExecutionReport
+        +replace(String, String, long, long) ExecutionReport
         +snapshot(int) OrderBookSnapshot
     }
 
@@ -155,10 +166,13 @@ The trade price is the resting order price. This is common matching-engine behav
 - Market orders never rest.
 - Filled or cancelled orders are removed from the active-order index.
 
+## Replace Semantics
+
+`replace(oldId, newId, price, quantity)` validates the replacement before changing the book. It then cancels the old order and submits a new GTC limit order. The replacement loses FIFO priority even if its price is unchanged. The supplied quantity is the new open quantity; already executed quantity remains part of the old order's history.
+
 ## Extension Points
 
 - Add stop orders by introducing a trigger-order store before the active book.
-- Add modify order by cancel-replace semantics to avoid changing priority accidentally.
 - Add market data by publishing snapshots and trade events from `OrderBook.place`.
 - Add persistence by appending accepted commands and generated trades to a journal.
 - Add risk checks in `MatchingEngine.place` before routing to `OrderBook`.
@@ -176,5 +190,5 @@ The trade price is the resting order price. This is common matching-engine behav
 - Synchronized per-book mutation.
 - Linear queue scan for cancellation.
 - No self-trade prevention.
-- No order amend/replace API.
+- Replace is cancel-replace only; it does not preserve the original order ID or time priority.
 - No durability or replay journal.

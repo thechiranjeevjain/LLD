@@ -1,0 +1,2 @@
+package com.chiranjeev.lld.oms;
+public enum OrderStatus { PENDING_NEW, NEW, PARTIALLY_FILLED, PENDING_CANCEL, PENDING_REPLACE, FILLED, CANCELLED, REJECTED }
