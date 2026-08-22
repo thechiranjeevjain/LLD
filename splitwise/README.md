@@ -1,5 +1,7 @@
 # Splitwise Low-Level Design
 
+> **40–60 minute boundary — focused slice:** Implement one split strategy, expense validation, ledger mutation, and a small service. Treat the additional strategies, groups, simplification, and complete runnable model as reference material. See the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md).
+
 This module implements a Splitwise-like expense sharing service in plain Java 17.
 
 For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, expense flow, design patterns, ledger model, and settlement tradeoffs.

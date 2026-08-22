@@ -1,5 +1,7 @@
 # Elevator System
 
+> **40–60 minute boundary — focused slice:** Implement car state, controller, one selection strategy, and one movement step. Discuss advanced scheduling and operational modes rather than coding them. See the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md).
+
 Low-level design for an elevator dispatch system. The implementation models a bank of elevator cars, hall calls, in-car destination requests, a pluggable assignment strategy, and deterministic step-by-step movement for testing.
 
 For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, dispatch sequence, design patterns, movement state rules, and extension points.

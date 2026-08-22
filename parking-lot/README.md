@@ -1,5 +1,7 @@
 # Parking Lot LLD
 
+> **40–60 minute boundary — focused slice:** Do not recreate this entire runnable repository in an interview. Implement the aggregate, spot allocation, ticket, and park/unpark path defined in the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md); discuss pricing, payment, persistence, and extra strategies.
+
 Standalone Java 17 implementation of a parking-lot low-level design.
 
 For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, park/unpark sequences, design patterns, invariants, and extension points.

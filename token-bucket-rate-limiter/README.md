@@ -1,5 +1,7 @@
 # Token Bucket Rate Limiter
 
+> **40–60 minute boundary — whole core fits:** Implement lazy refill, an injected clock, one bucket/per-key boundary, and deterministic tests; discuss distributed enforcement and cleanup. See the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md).
+
 Low-level design implementation of a thread-safe, in-memory token bucket rate limiter.
 
 For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, request flow, token math, design patterns, and concurrency model.

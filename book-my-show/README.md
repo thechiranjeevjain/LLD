@@ -1,5 +1,7 @@
 # BookMyShow Low-Level Design
 
+> **40–60 minute boundary — focused slice:** Implement show inventory, booking lifecycle, payment port, and atomic reserve/confirm/release behavior. Catalogue, repository implementations, and infrastructure are supporting code. See the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md).
+
 This module models the core booking path for a BookMyShow-style application.
 It is intentionally in-memory so the object model, service boundaries, and
 seat-locking behavior are easy to inspect and test.

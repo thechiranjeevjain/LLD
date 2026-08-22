@@ -1,6 +1,6 @@
 # DesignRedis
 
-> **Canonical scope:** Use this project for a Redis-like data-store LLD. Its LRU behavior is one applied eviction policy; for the standalone **LRU Cache (LLD #25)** question and the canonical `O(1)` hash-map plus doubly-linked-list design, use [lru-cache](../lru-cache/README.md). See the [trading-project relationship guide](../docs/TRADING_PROJECT_RELATIONSHIP_GUIDE.md) for the redundancy rules.
+> **Canonical scope and 40–60 minute boundary — focused slice:** Use this project for a Redis-like data-store LLD, but implement only SET/GET/DEL/TTL with the reduced store described in the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md). Collections, command processor, REPL, and the complete runnable store are supporting material. Its LRU behavior is one applied policy; for the standalone **LRU Cache (LLD #25)** question, use [lru-cache](../lru-cache/README.md). See the [trading-project relationship guide](../docs/TRADING_PROJECT_RELATIONSHIP_GUIDE.md) for redundancy rules.
 
 DesignRedis is a low-level design implementation of a small Redis-like in-memory data store. It focuses on clean object modeling, deterministic behavior, and runnable tests rather than network protocol compatibility.
 

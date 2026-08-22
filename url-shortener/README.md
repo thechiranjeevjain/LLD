@@ -1,5 +1,7 @@
 # URL Shortener
 
+> **40–60 minute boundary — focused slice:** Implement the link model, code generator, repository/cache ports, and create/resolve service paths with in-memory fakes. Spring, JPA, Redis, controllers, DTOs, configuration, and Docker are reference infrastructure. See the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md).
+
 Spring Boot URL shortener using MySQL as the source of truth and Redis as a cache-aside redirect cache.
 
 For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, create/redirect sequences, design patterns, cache strategy, and scaling tradeoffs.

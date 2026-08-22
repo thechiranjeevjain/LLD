@@ -5,6 +5,7 @@ Low-level design interview practice projects in Java. Each project is runnable a
 ## Study Chapters
 
 - [LLD Learning Order: One Exhaustive ROI Ranking](docs/LLD_LEARNING_ORDER_ROI_RANKING.md) — the single prerequisite-aware sequence for studying all 16 runnable projects with completion gates and what each project unlocks.
+- [Strict 40–60 Minute LLD Code Scope](docs/40_60_MINUTE_CODE_SCOPE.md) — the exact code slice to write, what to discuss instead, and the stop condition for every project; full runnable repositories are reference implementations, not one-hour transcripts.
 - [Design Patterns for Low-Level Design Interviews](docs/DESIGN_PATTERNS_INTERVIEW_CHAPTER.md) — all 23 GoF patterns plus practical Java LLD patterns, comparisons, selection heuristics, coding guidance, and a 45-minute interview workflow.
 - [Trading Projects: Relationship, Redundancy, and Study Guide](docs/TRADING_PROJECT_RELATIONSHIP_GUIDE.md) — separates canonical 40–60 minute LLD answers from production-shaped counterparts, explains intentional overlap, and defines when a design should graduate into system design.
 

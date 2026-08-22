@@ -2,6 +2,8 @@
 
 This is the single canonical learning order for all 16 runnable Maven projects in `G:\TechStudyNotes\LLDProjects`. Follow it from top to bottom. The ranking optimizes for prerequisite flow, reusable interview concepts, and return on limited time and mental energy—not alphabetical order or project size.
 
+Use [Strict 40–60 Minute LLD Code Scope](40_60_MINUTE_CODE_SCOPE.md) to decide what code to write versus discuss for each ranked project. The full runnable repository is never the required one-hour output unless that scope guide explicitly says its core fits.
+
 For every project, use the same learning loop: read its README and LLD document, draw the design from memory, read the tests as executable requirements, trace the core implementation, run the tests and demo, then explain the design aloud in 40–60 minutes. Move forward only when you meet the stated completion gate.
 
 1. **[Parking Lot](../parking-lot/README.md)** — foundational object modelling

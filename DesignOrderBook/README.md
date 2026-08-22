@@ -1,6 +1,6 @@
 # Design Order Book
 
-> **Canonical scope:** Use this project for **Order Book (LLD #19)**. Its matching code exists to exercise book behavior; for a focused **Matching Engine (LLD #20)** answer, use [matching-engine](../matching-engine/README.md). See the [trading-project relationship guide](../docs/TRADING_PROJECT_RELATIONSHIP_GUIDE.md) for the interview and production-shaped boundaries.
+> **Canonical scope and 40–60 minute boundary — focused slice:** Use this project for **Order Book (LLD #19)**, but implement only the order, price-level maps/queues, add/match-or-fill, cancel, and top-of-book slice defined in the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md). Its broader matching/snapshot code is supporting material; for **Matching Engine (LLD #20)** use [matching-engine](../matching-engine/README.md). See the [trading-project relationship guide](../docs/TRADING_PROJECT_RELATIONSHIP_GUIDE.md) for system boundaries.
 
 Java 17 low-level design project for an in-memory exchange order book.
 

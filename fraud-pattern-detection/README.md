@@ -1,5 +1,7 @@
 # Fraud Pattern Detection
 
+> **40–60 minute boundary — focused slice:** Implement the rule interface, two representative rules, scoring/decision, and engine orchestration. The full rule catalogue and state infrastructure are reference material. See the [strict code-scope guide](../docs/40_60_MINUTE_CODE_SCOPE.md).
+
 Low-level design sample for detecting risky payment patterns with composable rules.
 
 For interview prep, see [docs/LOW_LEVEL_DESIGN.md](docs/LOW_LEVEL_DESIGN.md) for the class diagram, rule pipeline, design patterns, consistency model, and production tradeoffs.
